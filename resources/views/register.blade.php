@@ -8,25 +8,30 @@
     <script src="https://kit.fontawesome.com/a81368914c.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{asset('assets/frontend/css/lonc.css')}}">
+    <style>
+        .registration-form{
+            border: 1px solid #ddd;
+            box-shadow: 2px 2px 12px #ababab;
+            border-radius: 15px;
+            padding: 10px;
+            width: 420px;
+            margin: 0 auto;
+            margin-top: 120px;
+        }
+    </style>
 </head>
 
 <body>
-<img class="wave" src="{{asset('assets/frontend/images/wave.png')}}">
-<div class="container">
-    <div class="img">
-        <img src="{{asset('assets/frontend/images/as.png')}}" style="width: 289px;">
-    </div>
-
-    <div class="login-content">
-
-        <form action="{{ route('register') }}" method="POST" class="sign-in-form">
+<div style="width: 100%;">
+    <div class="login-content" style="margin: 0 auto;">
+        <form action="{{ route('register') }}" method="POST" class="sign-in-form  registration-form">
             @csrf
 
             <img src="{{asset('assets/frontend/images/profilepic.png')}}">
-            <h2 class="login-title">Client Info</h2>
+            <h2 class="login-title">Registration</h2>
             <div class="login-input-field">
                 <i class="fas fa-user"></i>
-                <input type="text" name="name" class="from-control @error('name') is-invalid @enderror" value="{{ old('name') }}"  autocomplete="name" autofocus placeholder="Clientname" />
+                <input type="text" name="name" class="from-control @error('name') is-invalid @enderror" value="{{ old('name') }}"  autocomplete="name" autofocus placeholder="Name" />
             </div>
                 @error('name')
                     <div style="color: red;">{{ $message }}</div>

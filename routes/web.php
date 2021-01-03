@@ -31,6 +31,10 @@ Route::group(['prefix'=>'admin', 'as'=>'admin.', 'namespace'=>'admin'],function 
     Route::delete('service/destroy/{id}', 'ServiceController@destroy')->name('service.destroy')->middleware('can:admin');
     Route::put('service/approve/{id}', 'ServiceController@approve')->name('service.approve')->middleware('can:admin');
     Route::put('service/unapprove/{id}', 'ServiceController@unapprove')->name('service.unapprove')->middleware('can:admin');
+    Route::get('order','OrderController@index')->middleware('can:admin')->name('order');
+    Route::put('order/seen/{id}', 'OrderController@seen')->name('order.seen')->middleware('can:admin');
+    Route::delete('order/destroy/{id}', 'OrderController@destroy')->name('order.destroy')->middleware('can:admin');
+
 });
 
 Route::group(['prefix'=>'provider', 'as'=>'provider.', 'namespace'=>'provider'],function (){

@@ -36,9 +36,9 @@
                         <thead>
                         <tr>
                             <th class="text-center">SL#</th>
-                            <th class="text-center">Provider Name</th>
                             <th class="text-center">Service title</th>
                             <th class="text-center">User Name</th>
+                            <th class="text-center" style="width: 17%">Actions</th>
                         </tr>
                         </thead>
 
@@ -47,9 +47,27 @@
                         @foreach($orders as $key=>$order)
                             <tr>
                                 <td>{{$key+1}}</td>
-                                <td>{{$order->provider_id}}</td>
-                                <td>{{$order->service_id}}</td>
+                                <td>{{$order->service->title}}</td>
                                 <td>{{$order->user->name}}</td>
+                                <td>
+
+                                    @if(!$order->status)
+                                        <form class="d-inline-block pull-left" method="post" action="{{ route('admin.order.seen', $order->id) }}">
+                                            @csrf
+                                            @method('put')
+                                            <button class="btn btn-warning" onclick="return confirm('Are you Confirm to Seen?')">Unseen Order</button>
+                                        </form>
+                                    @else
+                                        <button class="btn btn-info pull-left">Seen Order</button>
+                                    @endif
+
+
+                                        <form class="d-inline-block pull-right" action="{{ route('admin.order.destroy',$order->id) }}" method="post">
+                                            @csrf
+                                            @method('delete')
+                                            <button class="btn btn-danger btn-sm" onclick="return confirm('Are you confirm ?')">Destroy</button>
+                                        </form>
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>

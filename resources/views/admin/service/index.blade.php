@@ -66,7 +66,7 @@
                                         @csrf
                                         @method('put')
                                         &nbsp;&nbsp;
-                                        <button class="btn btn-info" onclick="return confirm('Are you confirm to approve?')">Approve</button>
+                                        <button class="btn btn-warning" onclick="return confirm('Are you confirm to approve?')">Approve</button>
                                     </form>
                                     @else
 
